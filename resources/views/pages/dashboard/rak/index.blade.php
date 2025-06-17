@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 
-
+@section('title', 'Rak')
 @section('container')
     <div class="page-inner">
         {{-- table --}}

@@ -1,5 +1,6 @@
 @extends('layouts.dashboard')
 
+@section('title', 'Klien - Edit')
 @section('container')
     <div class="page-inner">
         <div class="row">

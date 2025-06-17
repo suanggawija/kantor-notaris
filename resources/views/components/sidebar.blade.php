@@ -2,9 +2,8 @@
     <div class="sidebar-logo">
         <!-- Logo Header -->
         <div class="logo-header" data-background-color="dark">
-            <a href="index.html" class="logo">
-                <img src="{{ asset('assets/img/kaiadmin/logo_light.svg') }}" alt="navbar brand" class="navbar-brand"
-                    height="20" />
+            <a href="/" class="logo">
+                <span class="text-white ">Notaris</span>
             </a>
             <div class="nav-toggle">
                 <button class="btn btn-toggle toggle-sidebar">
@@ -29,9 +28,6 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
-
-
-
 
                 <li class="nav-section ">
                     <span class="sidebar-mini-icon">
@@ -91,8 +87,8 @@
                     <div class="collapse" id="dashboard">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="../demo1/index.html">
-                                    <span class="sub-item">Dashboard 1</span>
+                                <a href={{ route('laporan.permohonan') }}>
+                                    <span class="sub-item">Permohonan</span>
                                 </a>
                             </li>
                         </ul>

@@ -1,5 +1,6 @@
 @extends('layouts.dashboard')
 
+@section('title', 'Rak - Tambah')
 @section('container')
     <div class="page-inner">
         <div class="row">

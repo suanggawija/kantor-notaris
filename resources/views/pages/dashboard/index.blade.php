@@ -1,5 +1,6 @@
 @extends('layouts.dashboard')
 
+@section('title', 'Dashboard')
 @section('container')
     <div class="page-inner">
         {{-- Title --}}

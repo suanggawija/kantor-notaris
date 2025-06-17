@@ -1,19 +1,19 @@
 @extends('layouts.dashboard')
 
-@section('title', 'Pembayaran')
+@section('title', 'Laporan - Permohonan')
 @section('container')
     <div class="page-inner">
+
         {{-- table --}}
         <div class="row">
-
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex align-items-center">
-                            <h4 class="card-title">Data Pembayaran</h4>
-                            <a class="btn btn-primary btn-round ms-auto" href="{{ route('pembayaran.create') }}">
-                                <i class="fa fa-plus"></i>
-                                Pembayaran Pembayaran
+                            <h4 class="card-title">Data Permohonan</h4>
+                            <a class="btn btn-primary btn-round ms-auto" href="{{ route('laporan.permohonan.cetak') }}">
+                                <i class="fa fa-file"></i>
+                                Cetak PDF
                             </a>
                         </div>
                     </div>
@@ -22,7 +22,7 @@
                         <div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
-                                    <div class="modal-header border-0">
+                                    <div class="border-0 modal-header">
                                         <h5 class="modal-title">
                                             <span class="fw-mediumbold"> New</span>
                                             <span class="fw-light"> Row </span>
@@ -62,7 +62,7 @@
                                             </div>
                                         </form>
                                     </div>
-                                    <div class="modal-footer border-0">
+                                    <div class="border-0 modal-footer">
                                         <button type="button" id="addRowButton" class="btn btn-primary">
                                             Add
                                         </button>
@@ -78,50 +78,42 @@
                             {{-- <button type="button" class="btn btn-success" id="alert_demo_3_3">
                                 Success
                             </button> --}}
-                            <table id="add-row" class="display table table-striped table-hover">
+                            <table id="add-row" class="table display table-striped table-hover">
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Pemohon</th>
-                                        <th>Tanggal</th>
-                                        <th>Total</th>
-                                        <th style="width: 10%">Action</th>
+                                        <th>Permohonan</th>
+                                        <th>Jenis Permohonan</th>
+                                        <th>Status</th>
+
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
                                         <th>#</th>
-                                        <th>Pemohon</th>
-                                        <th>Tanggal</th>
-                                        <th>Total</th>
-                                        <th>Action</th>
+                                        <th>Permohonan</th>
+                                        <th>Jenis Permohonan</th>
+                                        <th>Status</th>
+
                                     </tr>
                                 </tfoot>
                                 <tbody>
 
-                                    @foreach ($pembayaran as $index => $item)
+                                    @foreach ($permohonan as $index => $item)
                                         <tr>
                                             <td>{{ $index + 1 }}</td>
-                                            <td>#{{ $item->id }}/{{ $item->permohonan->klien->nama_klien ?? '' }}</td>
-                                            <td>{{ $item->tgl_pembayaran }}</td>
-                                            <td>{{ $item->total_pembayaran }}</td>
+                                            <td>#{{ $item->id }}/{{ $item->rak->kode_rak ?? '-' }}/{{ $item->klien->nama_klien ?? '-' }}
+                                            </td>
+                                            <td>{{ $item->jenis_permohonan }}</td>
                                             <td>
-                                                <div class="form-button-action">
-                                                    <a href="{{ route('pembayaran.edit', $item->id) }}"
-                                                        class="btn btn-link btn-primary btn-lg" data-bs-toggle="tooltip"
-                                                        title="Edit Pembayaran">
-                                                        <i class="fa fa-edit"></i>
-                                                    </a>
-                                                    <form action="{{ route('permohonan.destroy', $item->id) }}"
-                                                        method="POST" style="display:inline;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="button" class="btn btn-link btn-danger btn-delete"
-                                                            data-bs-toggle="tooltip" title="Hapus Pembayaran">
-                                                            <i class="fa fa-times"></i>
-                                                        </button>
-                                                    </form>
-                                                </div>
+                                                @if ($item->status_permohonan === 'diterima')
+                                                    <span class="badge bg-success">Selesai</span>
+                                                @elseif ($item->status_permohonan === 'ditolak')
+                                                    <span class="badge bg-danger">Ditolak</span>
+                                                @else
+                                                    <span
+                                                        class="badge bg-warning text-dark">{{ ucfirst($item->status_permohonan ?? 'Proses') }}</span>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach
@@ -228,7 +220,7 @@
             e.preventDefault();
             var form = $(this).closest('form');
             swal({
-                title: "Yakin ingin menghapus Pembayaran ini?",
+                title: "Yakin ingin menghapus permohonan ini?",
                 text: "Data yang dihapus tidak dapat dikembalikan!",
                 icon: "warning",
                 buttons: {

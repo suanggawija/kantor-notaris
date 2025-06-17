@@ -1,5 +1,6 @@
 @extends('layouts.auth')
 
+@section('title', 'Login')
 @section('container')
     <div class="d-flex justify-content-center align-items-center min-vh-100">
         <div class="card shadow" style="min-width: 350px;">

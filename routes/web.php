@@ -11,6 +11,7 @@ use App\Http\Controllers\PermohonanController;
 use App\Http\Controllers\RakController;
 use App\Http\Controllers\UserController;
 use App\Mail\PengajuanShipped;
+use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
 
@@ -30,7 +31,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('permohonan', PermohonanController::class);
     Route::resource('log', LogController::class);
     Route::resource('notifikasi', NotifikasiController::class);
-    Route::resource('laporan', LaporanController::class);
+
+    Route::prefix('laporan')->group(function () {
+        Route::get('permohonan', [LaporanController::class, 'laporanPermohonan'])->name('laporan.permohonan');
+        Route::get('permohonan/cetak', [LaporanController::class, 'cetakLaporanPermohonan'])->name('laporan.permohonan.cetak');
+    });
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });

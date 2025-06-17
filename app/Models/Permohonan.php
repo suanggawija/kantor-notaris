@@ -49,6 +49,6 @@ class Permohonan extends Model
     }
     public function pembayaran()
     {
-        return $this->hasMany(Pembayaran::class, 'id_pebayaran');
+        return $this->hasOne(Pembayaran::class, 'id_permohonan', 'id');
     }
 }
