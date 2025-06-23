@@ -2,7 +2,7 @@
     <div class="card-body">
         <div class="row align-items-center">
             <div class="col-icon">
-                <div class="icon-big text-center icon-primary bubble-shadow-small">
+                <div class="text-center icon-big icon-primary bubble-shadow-small">
                     <i class="{{ $icon ?? 'fas fa-users' }}"></i>
                 </div>
             </div>

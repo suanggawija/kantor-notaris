@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => Hash::make('password'),
             'nama_user' => 'admin',
-            'jabatan_user' => 'admin', // ← perbaiki di sini
+            'jabatan_user' => 'admin',
             'no_telp_user' => '0000000000',
             'alamat_user' => 'Jl. Kenangan',
         ]);
@@ -29,7 +29,7 @@ class UserSeeder extends Seeder
             'email' => 'admin2@gmail.com',
             'password' => Hash::make('password'),
             'nama_user' => 'admin2',
-            'jabatan_user' => 'admin', // ← perbaiki di sini
+            'jabatan_user' => 'admin',
             'no_telp_user' => '0000000000',
             'alamat_user' => 'Jl. Kenangan 2',
         ]);
